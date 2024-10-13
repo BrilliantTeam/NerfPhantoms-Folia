@@ -54,13 +54,13 @@ public class EventsHandler implements Listener {
             return;
         }
 
-        if (player.hasPermission("nerfphantoms.disablespawn.auto")) {
+        if (player.hasPermission("bcnp.disablespawn.auto")) {
             PhantomUtils.togglePhantomSpawn(player, false);
             return;
         }
 
         try {
-            if (!player.hasPermission("nerfphantoms.disablespawn.self")){
+            if (!player.hasPermission("bcnp.disablespawn.self")){
                 Nerfphantoms_folia.getInstance().storage.setPhantomDisabled(player.getUniqueId(), false);
                 return;
             }

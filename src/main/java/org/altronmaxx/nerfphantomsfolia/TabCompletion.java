@@ -13,19 +13,19 @@ import java.util.List;
 public class TabCompletion implements TabCompleter {
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("nerfphantoms") && args.length == 1) {
+        if (cmd.getName().equalsIgnoreCase("cnp") && args.length == 1) {
             List<String> list = new ArrayList<>();
             list.add("help");
 
-            if (sender.hasPermission("nerfphantoms.disablespawn.self")) {
-                list.add("togglespawn");
+            if (sender.hasPermission("bcnp.disablespawn.self")) {
+                list.add("toggle");
             }
 
-            if (sender.hasPermission("nerfphantoms.reload")) {
+            if (sender.hasPermission("bcnp.reload")) {
                 list.add("reload");
             }
 
-            if (sender.hasPermission("nerfphantoms.kill")) {
+            if (sender.hasPermission("bcnp.kill")) {
                 list.add("kill");
             }
 

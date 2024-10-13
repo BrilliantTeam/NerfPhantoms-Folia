@@ -10,7 +10,7 @@ public class NerfphantomsCommand implements CommandExecutor {
 
     PluginCommand pluginCommand;
     protected NerfphantomsCommand() {
-        pluginCommand = Nerfphantoms_folia.getInstance().getCommand("nerfphantoms");
+        pluginCommand = Nerfphantoms_folia.getInstance().getCommand("cnp");
         if (pluginCommand != null){
             pluginCommand.setTabCompleter(new TabCompletion());
             pluginCommand.setExecutor(this);
@@ -26,63 +26,61 @@ public class NerfphantomsCommand implements CommandExecutor {
         assert (permissionMessage != null);
 
         if (args[0].equalsIgnoreCase("reload")) {
-            if (!sender.hasPermission("nerfphantoms.reload")) {
+            if (!sender.hasPermission("bcnp.reload")) {
                 sender.sendMessage(permissionMessage);
                 return;
             }
             Nerfphantoms_folia.getInstance().reloadConfig();
             Nerfphantoms_folia.getInstance().config = Nerfphantoms_folia.getInstance().getConfig();
 
-            Nerfphantoms_folia.getInstance().logger.info("Reloaded configuration");
+            Nerfphantoms_folia.getInstance().logger.info("§7｜§6系統§7｜§f飯娘：§7已重新載入設置。");
             if (sender instanceof Player) {
-                sender.sendMessage("Reloaded configuration");
+                sender.sendMessage("§7｜§6系統§7｜§f飯娘：§7已重新載入設置。");
             }
             return;
         }
 
         if (args[0].equalsIgnoreCase("kill")) {
-            if (!sender.hasPermission("nerfphantoms.kill")) {
+            if (!sender.hasPermission("bcnp.kill")) {
                 sender.sendMessage(permissionMessage);
                 return;
             }
             if (!(sender instanceof Player)) {
-                sender.sendMessage("Command has to be executed by a player");
+                sender.sendMessage("§7｜§6系統§7｜§f飯娘：§7該指令只能由玩家使用。");
                 return;
             }
             Player player = (Player) sender;
             int n = PhantomUtils.killAllPhantoms(player.getWorld());
-            player.sendMessage("Killed " + n + " phantoms.");
+            player.sendMessage("§7｜§6系統§7｜§f飯娘：§7已擊殺§6 " + n + " §7隻夜魅。");
             return;
         }
 
-        if (args[0].equalsIgnoreCase("togglespawn")) {
+        if (args[0].equalsIgnoreCase("toggle")) {
             if (args.length == 1) {
-                if (!sender.hasPermission("nerfphantoms.disablespawn.self")) {
+                if (!sender.hasPermission("bcnp.disablespawn.self")) {
                     sender.sendMessage(permissionMessage);
                     return;
                 }
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage("Command has to be executed by a player");
+                    sender.sendMessage("§7｜§6系統§7｜§f飯娘：§7該指令只能由玩家使用。");
                     return;
                 }
                 Player player = (Player) sender;
                 boolean state = PhantomUtils.togglePhantomSpawn(player);
-                player.sendMessage((state ? "Disabled" : "Enabled")
-                        + " phantom spawn for " + player.getName() + ".");
+                player.sendMessage("§7｜§6系統§7｜§f飯娘：§7" + (state ? "§c已停用" : "§a已啟用") + "§6" + player.getName() + "§7的夜魅生成。");
                 return;
             }
-            if (!sender.hasPermission("nerfphantoms.disablespawn.others")) {
+            if (!sender.hasPermission("bcnp.disablespawn.others")) {
                 sender.sendMessage(permissionMessage);
                 return;
             }
             Player victim = Bukkit.getPlayer(args[1]);
             if (victim == null) {
-                sender.sendMessage("Unable to find player!");
+                sender.sendMessage("§7｜§6系統§7｜§f飯娘：§7找不到該玩家");
                 return;
             }
             boolean state = PhantomUtils.togglePhantomSpawn(victim);
-            sender.sendMessage((state ? "Disabled" : "Enabled")
-                    + " phantom spawn for " + victim.getName() + ".");
+            sender.sendMessage("§7｜§6系統§7｜§f飯娘：§7" + (state ? "§c已停用" : "§a已啟用") + "§6" + victim.getName() + "§7的夜魅生成。");
         }
 
     }

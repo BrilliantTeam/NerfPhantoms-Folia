@@ -1,37 +1,37 @@
-name: nerfphantoms-folia
+name: bcnp-folia
 version: '${version}'
 main: org.altronmaxx.nerfphantomsfolia.Nerfphantoms_folia
 api-version: 1.20
 folia-supported: true
 commands:
   nerfphantoms:
-    usage: /nerfphantoms <help | togglespawn | kill | reload>
-    permission-message: You don't have permission.
+    usage: /cnp <help | toggle | kill | reload>
+    permission-message: §7｜§6系統§7｜§f飯娘：§7你沒權限。
 permissions:
-  nerfphantoms.*:
+  bcnp.*:
     description: Gives access to all NerfPhantoms commands
     default: op
     children:
-      nerfphantoms.all: true
-  nerfphantoms.all:
+      bcnp.all: true
+  bcnp.all:
     description: Gives access to all NerfPhantoms commands
     children:
-      nerfphantoms.reload: true
-      nerfphantoms.kill: true
-      nerfphantoms.disablespawn.self: true
-      nerfphantoms.disablespawn.others: true
-  nerfphantoms.reload:
+      bcnp.reload: true
+      bcnp.kill: true
+      bcnp.disablespawn.self: true
+      bcnp.disablespawn.others: true
+  bcnp.reload:
     description: Reload plugin config
-    default: false
-  nerfphantoms.kill:
+    default: op
+  bcnp.kill:
     description: Kill all phantoms in current world
-    default: false
-  nerfphantoms.disablespawn.self:
+    default: op
+  bcnp.disablespawn.self:
     description: Command to disable phantom spawning for self
     default: op
-  nerfphantoms.disablespawn.others:
+  bcnp.disablespawn.others:
     description: Command to disable phantom spawning for other players
     default: op
-  nerfphantoms.disablespawn.auto:
+  bcnp.disablespawn.auto:
     description: Phantom spawn disable active by default for player
-    default: false
+    default: op
